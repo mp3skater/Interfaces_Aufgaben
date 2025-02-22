@@ -1,22 +1,30 @@
 package main.java.net.mp3skater.interfaces.ex678;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 
 public class JTreeExample {
     public static void main(String[] args) {
-        // Erzeuge einen unsichtbaren Wurzelknoten
-        DefaultMutableTreeNode wurzel = new DefaultMutableTreeNode("unsichtbareWurzel");
-        // Beispiel: Hänge eine Konstante an die Wurzel
-        wurzel.add(new Konstante(3.0));
+        // Knoten erstellen
+        Konstante zwei = new Konstante(2);
+        Konstante drei = new Konstante(3);
+        Konstante vier = new Konstante(4);
+        Konstante sieben = new Konstante(7);
 
-        DefaultTreeModel treeModel = new DefaultTreeModel(wurzel);
+        Addition c = new Addition(drei, vier);
+        Addition b = new Addition(c, zwei);
+        Subtraktion d = new Subtraktion(sieben, zwei);
+        TreeNode a = new Division(b, d);
+
+        TreeModel treeModel = new DefaultTreeModel(a);
         JTree jTree = new JTree(treeModel);
-        jTree.setEditable(true);
-        jTree.setRootVisible(false);
 
-        // GUI-Fenster
+        // Renderer setzen
+        jTree.setCellRenderer(new MeinTreeCellRenderer());
+
+        // GUI-Fenster erstellen
         JFrame frame = new JFrame("Mathematische Ausdrücke");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new JScrollPane(jTree));

@@ -7,37 +7,16 @@ public class Konstante extends Operand {
 		this.ergebnis = ergebnis;
 	}
 
-	public Konstante() {
-		this(0.0);
-	}
-
-	public double getErgebnis() {
-		return ergebnis;
-	}
-
 	public void setErgebnis(double ergebnis) {
 		this.ergebnis = ergebnis;
 	}
 
-	/**
-	 * Wird aufgerufen, wenn der Benutzer den Knoten editieren will (F2).
-	 * Hier wird der interne Wert aktualisiert.
-	 */
-	@Override
-	public void setUserObject(Object object) {
-		if (object instanceof Number) {
-			setErgebnis(((Number) object).doubleValue());
-		} else {
-			try {
-				setErgebnis(Double.parseDouble(object.toString()));
-			} catch (NumberFormatException e) {
-				// Bei ungültiger Eingabe wird nichts geändert
-			}
-		}
+	public double getErgebnis() {
+		return this.ergebnis;
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf(ergebnis);
+		return String.valueOf(this.ergebnis);
 	}
 }
